@@ -14,42 +14,36 @@
 |
 */
 
-use App\Http\Requests\loginRequest;
+use App\Http\Requests\studentLoginRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 
 class LoginController extends Controller
 {
 	//User login action
-	public function loginStudent(loginRequest $request)
+	public function loginStudent(studentLoginRequest $request)
 	{
-		//encrypt the password
-		//$request->password = Crypt::encrypt($request->password);
-				
-        //return Redirect::action('AppController@home'); //???
-		$credentials = $request->only('studentId', 'password');
-         
-		if(Auth::attempt($credentials, $request->remember))
+        if(Auth::guard('studentsession')->attempt(['studentId' => $request->studentId,
+		                                           'password' => $request->password],
+												   $request->remember))
 		{
-			return Auth::user();
-			return Redirect::action('AppController@home'); //???
+			//Successful login
+			return Redirect::intended('home');
 		}
 
-//		if ($this->auth->attempt($credentials, $request->has('remember')))
-//		{
-//			return redirect()->intended($this->redirectPath());
-//		}
-
-		return redirect($this->loginPath())
-			   ->withInput($request->only('email', 'remember'))
-			   ->withErrors(['email' => $this->getFailedLoginMessage()]);
+		//Unsuccessful login
+		return Redirect::action('AppController@login')
+			   ->withInput($request->only('studentId', 'password'))
+			   ->withErrors(['password' => 'Invalid Password.']);
 	}
 	
 	//User logout action
 	public function logout()
 	{
-		Auth::logout();
+		Auth::guard('studentsession')->logout();
+		Auth::guard('websession')->logout();
 		Session::flush();
 		return Redirect::action('AppController@home');
 	}

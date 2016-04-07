@@ -16,14 +16,14 @@ class UserModel extends Model implements AuthenticatableContract, CanResetPasswo
 	 * @var string
 	 */
 	protected $table = 'users';
-	protected $primaryKey = "studentId";
+	protected $primaryKey = "id";
 
 	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
 	 */
-	protected $fillable = ['firstName','studentId','lastName','campus'];
+	protected $fillable = ['name','email','password'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -33,7 +33,7 @@ class UserModel extends Model implements AuthenticatableContract, CanResetPasswo
 
 	public function requests()
 	{
-		return $this->hasMany('App\Models\request', 'studentId');
+		return $this->hasMany('App\Http\Models\requestModel', 'studentId');
 	}
 
 	//relationship between user and post table

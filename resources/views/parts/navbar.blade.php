@@ -22,14 +22,14 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand page-scroll" href="#page-top">Sharing Taxi</a>
+			<a class="navbar-brand page-scroll" href="./home">Sharing Taxi</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				@if(Auth::check())
-					<li><a>{{Auth::user()->studentId}}</a></li>
+				@if(Auth::guard('studentsession')->check())
+					<li><a>{{Auth::guard('studentsession')->user()->studentId}}</a></li>
 					<li><a onclick = "postCheck()" data-toggle="modal" data-target="#postModal">Posts</a></li>
 					<li><a onclick = "requestCheck()" data-toggle="modal" data-target="#postModal">Requests</a></li>
 					<li><a href="./auth/logout">Logout</a></li>

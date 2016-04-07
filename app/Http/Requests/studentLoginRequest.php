@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class loginRequest extends Request
+class studentLoginRequest extends Request
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -18,7 +18,7 @@ class loginRequest extends Request
 	 */
 	public function rules()
 	{
-		return ['studentId' => 'required|string',
+		return ['studentId' => 'required|string|exists:students,studentId',
 			    'password' => 'required|string'];
 	}
 }

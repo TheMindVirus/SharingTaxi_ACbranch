@@ -16,6 +16,9 @@
 |
 */
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+
 class AppController extends Controller
 {	
 	//Homepage
@@ -25,10 +28,19 @@ class AppController extends Controller
 	public function search(){return view('search');}
 	
 	//User login page
-	public function login(){return view('auth.login');}
+	public function login()
+	{
+		if(!Session::has('url.intended'))
+			Session::put('url.intended', URL::previous());
+		return view('auth.login');
+	}
 	
 	//User registration page
-	public function register(){return view('auth.register');}
+	public function register()
+	{
+		Session::forget('url.intended');
+		return view('auth.register');
+	}
 }
 
 ?>

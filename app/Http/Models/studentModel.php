@@ -37,7 +37,7 @@ class studentModel extends Model implements AuthenticatableContract, CanResetPas
      */
     public function requests()
     {
-        return $this->hasMany('App\Models\request', 'studentId');
+        return $this->hasMany('App\Http\Models\requestModel', 'studentId');
     }
 
     //relationship between user and post table

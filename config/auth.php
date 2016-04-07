@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'websession',
         'passwords' => 'users',
     ],
 
@@ -36,14 +36,24 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'websession' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
 
-        'api' => [
+		'webapi' => [
             'driver' => 'token',
             'provider' => 'users',
+        ],
+		
+		'studentsession' => [
+			'driver' => 'session',
+			'provider' => 'students',
+		],
+		
+		'studentapi' => [
+            'driver' => 'token',
+            'provider' => 'students',
         ],
     ],
 
@@ -67,8 +77,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Http\Models\userModel::class,
         ],
+		
+		'students' => [
+			'driver' => 'eloquent',
+			'model' => App\Http\Models\studentModel::class,
+		],
 
         // 'users' => [
         //     'driver' => 'database',

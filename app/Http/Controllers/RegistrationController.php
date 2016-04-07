@@ -16,8 +16,6 @@
 
 use App\Http\Requests\studentRequest;
 use App\Http\Models\studentModel;
-use Illuminate\Contracts\Encryption;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
@@ -36,7 +34,7 @@ class RegistrationController extends Controller
 		$studentEmail = $studentId .'@buckingham.ac.uk';
 
 		//encrypt the password
-		$password = Crypt::encrypt($request->password);
+		$password = bcrypt($request->password);//Crypt::encrypt($request->password);
 
 		//random confirmation code
 		$confirmation_code = str_random(30);

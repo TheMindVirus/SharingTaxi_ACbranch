@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 class requestModel extends Model
 {
     protected $table = 'requests';
+	protected $primaryKey = "requestId";
 
     protected $fillable = ['postId',
                            'studentId',
