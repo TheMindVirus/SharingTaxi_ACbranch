@@ -13,6 +13,7 @@
 | AppController@search - search results
 | AppController@login - user login page
 | AppController@register - user registration page
+| AppController@forgot - user password reset page
 |
 */
 
@@ -40,6 +41,14 @@ class AppController extends Controller
 	{
 		Session::forget('url.intended');
 		return view('auth.register');
+	}
+	
+	//User password reset page
+	public function forgot()
+	{
+		if(!Session::has('url.intended'))
+			Session::put('url.intended', URL::previous());
+		return view('auth.reset');
 	}
 }
 

@@ -18,6 +18,7 @@ Route::get('home',     'AppController@home');      //Homepage
 Route::get('search',   'AppController@search');    //Search results page
 Route::get('login',    'AppController@login');     //User login page
 Route::get('register', 'AppController@register');  //User registration page
+Route::get('forgot',   'AppController@forgot');    //User password reset page
 
 //-POSTS-------------------------------------------------------------------
 
@@ -41,6 +42,8 @@ Route::post('auth/student/register',
             'RegistrationController@addStudent');      //Adds a new student user
 Route::get('auth/student/verify/{confirmationCode}',
             'RegistrationController@confirmStudent');  //Confirms a new student user (email link)
+Route::post('auth/student/reset',
+            'RegistrationController@resetStudent');    //Resets a student user's password
 
 //OLD STUFF
 /*

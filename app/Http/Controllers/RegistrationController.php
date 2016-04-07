@@ -11,6 +11,7 @@
 |
 | RegistrationController@addStudent - add a new student user to the database
 | RegistrationController@confirmStudent - confirm a new student user account from e-mail link
+| RegistrationController@resetStudent - reset a student user's password
 |
 */
 
@@ -81,6 +82,12 @@ class RegistrationController extends Controller
 		//flash message to show in the home page
 		Session::flash('flash_message','Your email address has been verified');
 		return Redirect::action('AppController@home');
+	}
+	
+	//reset a student user's password
+	public function resetStudent()
+	{
+		return Redirect::action('AppController@home'); //TODO: reset password functionality
 	}
 }
 
