@@ -31,8 +31,10 @@
 			<ul class="nav navbar-nav navbar-right">
 				@if(Auth::guard('studentsession')->check())
 					<li><a>{{Auth::guard('studentsession')->user()->studentId}}</a></li>
-					<li><a onclick = "postCheck()" data-toggle="modal" data-target="#postModal">Posts</a></li>
-					<li><a onclick = "requestCheck()" data-toggle="modal" data-target="#postModal">Requests</a></li>
+					<li><a onclick="postFetch({{Auth::guard('studentsession')->user()->studentId}})"
+					     data-toggle="modal" data-target="#postModal">Posts</a></li>
+					<li><a onclick="requestFetch({{Auth::guard('studentsession')->user()->studentId}})"
+					     data-toggle="modal" data-target="#postModal">Requests</a></li>
 					<li><a href="./auth/logout">Logout</a></li>
 				@else
 					<li><a href="./register">Register</a></li>

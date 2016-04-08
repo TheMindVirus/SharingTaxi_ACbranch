@@ -1,19 +1,19 @@
 /**
- * Created by Emmanuel on 22/03/2016.
+ * Created by Emmanuel Audu on 22/03/2016.
+ * Edited by Alastair Cota on 08/04/2016.
  */
-//Description: This file contains all the functions concerning the users journey posts
+//Description: This file contains the functions for the users journey posts
 
-//Uses an ajax query to check if the statuses of the logged in users posts
-function postCheck()
+//Load the user's post notifications
+function postFetch(studentId)
 {
-    var studentId = 1600428;
-    // Get the logged in users Id
-    // Send the user id with the ajax request
+    //Send the user id with the ajax request
     $.ajax({
         type: "GET",
         data: {studentId:studentId, _token: '{{csrf_token()}}' },
-        url: './loggedInUsersRequestNotification',
-        success: function(output) {
+        url: './post/Fetch',
+        success: function(output) 
+		{
             //Decode the notifications array from the server
             var results = JSON.parse(output);
             var postHTML = "";
@@ -37,9 +37,9 @@ function postCheck()
                 //Add buttons to the notification box
                 if(requestStatus == 0)
                 {
-                    postHTML += "<input type='button' id='notif-post-accept-" + postId + "' class='btn btn-primary' onclick = 'acceptRequest(" + postId + "," + studentID + ")' value='Accept' style='position:relative; margin-top: -15px;'>"
+                    postHTML += "<input type='button' id='notif-post-accept-" + postId + "' class='btn btn-primary' onclick = 'requestAccept(" + postId + "," + studentID + ")' value='Accept' style='position:relative; margin-top: -15px;'>"
                         + "  "
-                        + "<input type='button' id='notif-post-reject-" + postId + "' class='btn btn-primary' onclick = 'rejectRequest(" + postId + "," + studentID + ")' value='Reject' style='position:relative; margin-top:-15px;'>";
+                        + "<input type='button' id='notif-post-reject-" + postId + "' class='btn btn-primary' onclick = 'requestReject(" + postId + "," + studentID + ")' value='Reject' style='position:relative; margin-top:-15px;'>";
                 }
                 else if(requestStatus == 1)
                 {

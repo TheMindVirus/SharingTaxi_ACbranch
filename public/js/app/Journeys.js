@@ -1,37 +1,14 @@
 /**
- * Created by Emmanuel on 22/03/2016.
+ * Created by Emmanuel Audu on 22/03/2016.
+ * Edited by Alastair Cota on 08/04/2016.
  */
-//Description: File contains all the functions required for posting a journey
+//Description: This file contains the functions for posting a journey
 
-//This the what happens when the user posts a new journey
-function postJourneySubmit()
+//Carry accross the Destination field from the homepage -> modal
+function journeyBtnClick()
 {
-    var studentId = 1600428;
-    var destination = document.getElementById("post-journey-destination").value;
-    var date = document.getElementById("post-journey-date").value;
-    $.ajax({
-        type: "GET",
-        data:{studentId:studentId, destination:destination, date:date, _token:'{{csrf_token()}}'},
-        url: './postJourney',
-        success: function(output)
-        {
-            $('#postJourney').modal('hide');
-        }
-        //
-    });
-}
-
-//I had issues handling my date
-// So i created this function as the onload function when the user opens the journey
-function dateInput()
-{
-
-}
-
-//updating the users destination on the post journey modal
-//I know, this is a waste of time but oh well
-function postJourney()
-{
+	//TODO: Force login first, either now or on Submit, then return back here and complete the submission
+	
     //get the value of the destination
     var value = document.getElementById('destination').value;
     //update users destination with the value
@@ -44,4 +21,21 @@ function postJourney()
     //    + "<input type='button' id='post-journey-submit' class='btn btn-primary' onclick='postJourneySubmit()' value='Submit' style='position:relative; margin-top: -15px;'>"
     //    + "<br>";
     //document.getElementById("postJourneyBody").innerHTML = postHTML;
+}
+
+//This the what happens when the user posts a new journey
+function journeySubmit()
+{
+    var destination = document.getElementById("post-journey-destination").value;
+    var date = document.getElementById("post-journey-date").value;
+	$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+	$.ajax({
+        type: "POST",
+        data:{destination:destination, date:date},
+        url: './post/Journey',
+        success: function(output)
+        {
+            $('#postJourney').modal('hide');
+        }
+    });
 }

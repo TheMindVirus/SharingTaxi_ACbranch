@@ -23,7 +23,8 @@
 					<br/>
 					<br/>
 					<input class="btn btn-primary" type="submit" value="SEARCH">
-					<a class="btn btn-primary" data-toggle="modal" data-target="#postJourney" onclick="postJourney()">POST JOURNEY</a>
+					<a class="btn btn-primary" data-toggle="modal" data-target="#postJourney"
+					onclick="journeyBtnClick()">POST JOURNEY</a>
 				</form>
 			</div>
 		</div>

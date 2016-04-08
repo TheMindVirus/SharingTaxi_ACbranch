@@ -28,15 +28,15 @@ Route::get('post/Fetch',    'PostController@fetch');   //Fetches a user's posts
 
 //-REQUESTS----------------------------------------------------------------
 
-Route::get('request/Create', 'RequestController@request');  //Creates a request for a specific post
-Route::get('request/Fetch',  'RequestController@fetch');    //Fetches a user's requests
-Route::get('request/Accept', 'RequestController@accept');   //Accepts a request
-Route::get('request/Reject', 'RequestController@reject');   //Rejects a request
+Route::post('request/Journey', 'RequestController@request');  //Creates a request for a specific post
+Route::get('request/Fetch',    'RequestController@fetch');    //Fetches a user's requests
+Route::get('request/Accept',   'RequestController@accept');   //Accepts a request
+Route::get('request/Reject',   'RequestController@reject');   //Rejects a request
 
 //-AUTHORISATION-----------------------------------------------------------
 
 Route::post('auth/student/login', 'LoginController@loginStudent');  //Student user login action
-Route::get('auth/logout',        'LoginController@logout');         //User logout action
+Route::get('auth/logout',         'LoginController@logout');        //User logout action
 
 Route::post('auth/student/register',
             'RegistrationController@addStudent');      //Adds a new student user
@@ -47,8 +47,6 @@ Route::post('auth/student/reset',
 
 //OLD STUFF
 /*
-
-Route::get('login','loginController@login');
 
 Route::get('postJourney', 'postController@postJourney');
 

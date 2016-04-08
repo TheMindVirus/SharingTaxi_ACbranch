@@ -1,11 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use Illuminate\Http\Request;
-use DB;
-
-use App\requestsModel;
-
 /*
 |--------------------------------------------------------------------------
 | Request Controller
@@ -13,28 +7,31 @@ use App\requestsModel;
 |
 | This Controller handles the user's request of a journey post.
 |
-| RequestController@request - request a post if it doesn't already exist
-| RequestController@check - returns a list of the user's requests
+| RequestController@request - request a post if it doesn't already exist //TODO: add exists
+| RequestController@fetch - returns a list of the user's requests
 | RequestController@accept - accept a request for a post
 | RequestController@reject - reject a request for a post
 |
 */
 
+use App\Http\Requests;
+use App\Models\requestModel;
+use Illuminate\Http\Request;
+use DB;
+
 class RequestController extends Controller
 {
+	//create Request
 	public function request($postId, $studentId, $requestStatus)
 	{
 		//then create the request
-		requestsModel::create([
-			'postId' => $postId,
-			'studentId' =>$studentId,
-			'requestStatus' => 0
-		]);
+		requestModel::create(['postId' => $postId,
+			                  'studentId' =>$studentId,
+			                  'requestStatus' => 0]);
 		return 'success';
 	}
 
-
-	//create Request
+	//check if a request exists
 	public function exists(Request $request)
 	{
 		//for now student request is automatically 1600428
@@ -55,7 +52,7 @@ class RequestController extends Controller
 		}
 		else
 		{
-			requestsModel::create([
+			requestModel::create([
 				'postId' => $postId,
 				'studentId' =>$studentId,
 				'requestStatus' => 0
@@ -65,12 +62,12 @@ class RequestController extends Controller
 	}
 
 	//returns a list of the user's requests
-	public function check()
+	public function fetch()
 	{
-		//Normally we would use the logged in user but user for now we use student id
-		$studentId = 1600428;
+		//get the logged-in user's studentId
+		$studentId = Auth::guard('studentsession')->user()->studentId();
 
-		//get all the request for the logged in student
+		//get all the request for the student
 		$studentRequests = DB::table('requests')->where('studentId','LIKE',$studentId)->get();
 
 		$resultsInJson = json_encode($studentRequests);

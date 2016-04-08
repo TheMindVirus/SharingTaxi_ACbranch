@@ -5,4 +5,4 @@
 @include('lib.bootstrap.date-time')
 @include('lib.Theme_Plugins')
 @include('lib.IE9_Compat')
-@include('lib.app.Post_Request')
+@include('lib.app.Functionality')

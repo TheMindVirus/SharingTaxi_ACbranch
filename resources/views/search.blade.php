@@ -51,8 +51,8 @@
 										}
 									}
 								}
-								?>
-								<a class = "{{$class}}" onclick = "requestButton('{{$results->postId}}', 1600425)" id = "requestButton">{{$text}}</a>
+								?> <!--TODO: CHANGE STUDENT ID!-->
+								<a class = "{{$class}}" onclick = "requestJourney('{{$results->postId}}', 1600425)" id = "requestButton">{{$text}}</a>
 							</div>
 							<hr style = "width:89%; margin-top:150px; border:2px solid lightgrey;">
 						</div>
