@@ -1,3 +1,4 @@
+@include('parts.modals')
 <nav class="navbar navbar-default navbar-fixed-top"
 
 {{-- Give the element a custom id --}}

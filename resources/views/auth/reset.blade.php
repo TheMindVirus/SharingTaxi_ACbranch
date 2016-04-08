@@ -3,13 +3,7 @@
 
 <head>
     <title>SHARING TAXI - PASSWORD RESET</title>
-
-    @include('lib.Metadata')
-    @include('lib.jQuery')
-    @include('lib.Custom_Fonts')
-    @include('lib.bootstrap.core')
-    @include('lib.Theme_Plugins')
-    @include('lib.IE9_Compat')
+	@include('parts.lib')
 </head>
 
 <body>

@@ -1,9 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use Illuminate\Http\Request;
-use DB;
-
 /*
 |--------------------------------------------------------------------------
 | Post Controller
@@ -18,16 +14,22 @@ use DB;
 |
 */
 
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use DB;
+
 class postController extends Controller
 {
 	//search for advertised posts
 	public function search(Request $request)
 	{
 		//get a list of already requested posts for the logged-in user
-		if(Auth::studentId != null)
-			$studentsRequests = student::find(Auth::studentId)->requests;
+		if(Auth::guard('studentsession')->check())
+			$studentsRequests = DB::table('requests'
+		        ->where('studentId','LIKE',Auth::guard('studentsession')->user()->requests();
 		else
-			$studentsRequests = function(){return [];};
+			$studentsRequests = [];
 
 		//get the destination and the currentLocation
 		$currentLocation = $request->currentLocation;
@@ -40,7 +42,7 @@ class postController extends Controller
 		$searchResults = DB::table('posts')->paginate();
 
 		//send results to the search result view and array of student requests
-		return view('searchResults')->with(compact('searchResults', 'studentsRequests'));
+		return view('search')->with(compact('searchResults', 'studentsRequests'));
 	}
 	
 	//create a journey to advertise
