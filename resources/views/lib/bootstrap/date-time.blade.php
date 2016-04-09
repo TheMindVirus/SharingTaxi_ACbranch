@@ -5,9 +5,8 @@
 
 <!-- Date/Time Picker Elements -->
 <script>
-	$(function()
+	$(document).ready(function()
 	{
-		$( "#dateTimepicker" ).datetimepicker();
-		$( "#post-journey-date" ).datetimepicker();
+		$(".calendar").datetimepicker();
 	});
 </script>

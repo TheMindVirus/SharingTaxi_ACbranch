@@ -31,10 +31,10 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">JOURNEYS</h4>
 			</div>
-			<div class="modal-body" id="postJourneyBody">
+			<div class="modal-body" id="postJourneyBody" style="z-index: 2000;">
 				<input class = "form-control" style='height: 50px; width: 80%;' type='text' id='post-journey-destination' placeholder='Destination'>
 				<br/>
-				<input style='height: 50px; width: 80%;' class = 'form-control datetimepicker' id='post-journey-date'  placeholder='Date/Time'>
+				<input style='height: 50px; width: 80%;' class='form-control calendar' id='post-journey-date'  placeholder='Date/Time'>
 				<br/>
 				<input type='button' id='post-journey-submit' class='btn btn-primary' onclick='journeySubmit()' value='Submit'>
 			</div>
