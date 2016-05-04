@@ -18,7 +18,7 @@
 		@endif
 			<div class="header-content">
 				<div class="header-content-inner">
-				<form action="./search" class="form">
+				<form action="/searchResults" class="form" method = "get">
 					<input style="height:50px; width: 500px;" name="destination" id="destination" type="text" placeholder="Destination">
 					<br/>
 					<br/>

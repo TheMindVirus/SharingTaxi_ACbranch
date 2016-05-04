@@ -27,12 +27,21 @@ class RegistrationController extends Controller
 	//add a new student user to the database
 	public function addStudent(studentRequest $request)
 	{
+
+		$file = Input::file('image');
+		return $file;
+
 		//just store the users details in variables
 		$studentId = $request->studentId;
 		$firstName = $request->firstName;
 		$surname = $request->surname;
 		$campus = $request ->campus;
 		$studentEmail = $studentId .'@buckingham.ac.uk';
+
+		//This handles saving the image
+		$destinationPath = 'uploads/';
+		$filename = $file->getClientOriginalName();
+		Input::file('image')->move($destinationPath, $filename);
 
 		//encrypt the password
 		$password = bcrypt($request->password);//Crypt::encrypt($request->password);

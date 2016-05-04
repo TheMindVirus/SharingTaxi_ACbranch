@@ -28,10 +28,13 @@ function journeySubmit()
 {
     var destination = document.getElementById("post-journey-destination").value;
     var date = document.getElementById("post-journey-date").value;
+    var percentage = document.getElementById("post-journey-percentage-to-pay").value;
+    var farePrice = document.getElementById("post-journey-farePrice").value;
+
 	$.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
 	$.ajax({
         type: "POST",
-        data:{destination:destination, date:date},
+        data:{destination:destination, date:date, percentageToPay:percentage, farePrice:farePrice},
         url: './post/Journey',
         success: function(output)
         {

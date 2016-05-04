@@ -15,14 +15,13 @@
 
 Route::get('/',        'AppController@home');      //Homepage (index)
 Route::get('home',     'AppController@home');      //Homepage
-Route::get('search',   'AppController@search');    //Search results page
 Route::get('login',    'AppController@login');     //User login page
 Route::get('register', 'AppController@register');  //User registration page
 Route::get('forgot',   'AppController@forgot');    //User password reset page
 
 //-POSTS-------------------------------------------------------------------
 
-Route::get('post/Search',   'PostController@search');  //Search for posts
+Route::get('searchResults', 'PostController@search');  //Search for posts
 Route::post('post/Journey', 'PostController@post');    //Posts a journey
 Route::get('post/Fetch',    'PostController@fetch');   //Fetches a user's posts
 

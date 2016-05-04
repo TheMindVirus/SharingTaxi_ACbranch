@@ -19,6 +19,7 @@ class CreateStudentsTable extends Migration
 			$table->string('firstName');
 			$table->string('surname');
 			$table->string('campus');
+			$table->string('prifileImage');
 			$table->boolean('confirmed')->default(0);
 			$table->string('confirmation_code');
 			$table->string('password',60);

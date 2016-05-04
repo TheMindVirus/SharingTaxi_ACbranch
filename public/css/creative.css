@@ -99,8 +99,8 @@ aside {
 
 .navbar-default {
     border-color: rgba(34,34,34,.05);
+    background-color: #000000;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
-    background-color: #fff;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -459,9 +459,10 @@ fieldset[disabled] .btn-primary.active {
 
 .btn {
     border: 0;
-    border-radius: 300px;
+    border-radius: 15px;
     text-transform: uppercase;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    font-size: 15px;
     font-weight: 700;
 }
 

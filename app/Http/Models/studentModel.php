@@ -28,6 +28,7 @@ class studentModel extends Model implements AuthenticatableContract, CanResetPas
 	                       'surname',
 						   'campus',		
 						   'confirmation_code',
+                            'profileImage',
 						   'password'];
 
     /**

@@ -24,9 +24,18 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="./auth/student/register">
+                    <form style = "display: block; text-align:center;" class="form-horizontal" role="form" method="POST" action="./auth/student/register">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+                        <div class = "form-group">
+                            <label class="col-md-4 control-label">Image</label>
+                            <div class = "col-md-6">
+                                <input type="file" id = "file" onchange = "imagePreview()" class = "form-control" name = "image"/>
+                            </div>
+                        </div>
+                        <div class = "form-group">
+                            <img   style = "margin-left:auto; margin-right:auto;" id = "image" src = "" height= "300" width = "300" alt = "image preview"/>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Student ID</label>
                             <div class="col-md-6">
@@ -80,5 +89,22 @@
             </div>
         </div>
     </div>
+
+<script>
+    function imagePreview()
+    {
+        var image = document.getElementById('image');
+        var file =   document.querySelector('input[type=file]').files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function(){
+            //result returns the page of the
+            image.src = reader.result;
+        }
+        if(file){
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
 </body>
 </html>

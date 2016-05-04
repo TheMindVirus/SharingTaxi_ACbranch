@@ -18,7 +18,8 @@ class studentRequest extends Request
 	 */
 	public function rules()
 	{
-		return ['studentId' => 'unique:students,studentId|required|string',
+		return [
+				'studentId' => 'unique:students,studentId|required|string',
 		        'firstName' => 'required|string',
 		        'surname' => 'required|string',
 			    'campus' => 'required|string',

@@ -19,7 +19,10 @@ class postRequest extends Request
 	public function rules()
 	{
 		return ['destination' => 'required|string',
-			    'date' => 'required|date_format:Y-m-d H:i|after:yesterday']; //TODO: validate only if date is in the future using 'after'
+			    'date' => 'required|date_format:Y-m-d H:i|after:yesterday',
+				'farePrice' => 'required|int',
+				'percentageToPay' => 'required|int'
+		]; //TODO: validate only if date is in the future using 'after'
 	}
 }
 

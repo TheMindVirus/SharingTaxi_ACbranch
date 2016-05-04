@@ -18,12 +18,12 @@ use App\Http\Requests;
 use App\Http\Requests\postRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class postController extends Controller
 {
 	//search for advertised posts
-	public function search(Request $request)
+	public function search(Request $request, $destination= null)
 	{
 		//get a list of already requested posts for the logged-in user
 		if(Auth::guard('studentsession')->check())
@@ -37,13 +37,17 @@ class postController extends Controller
 		$destination = $request->destination;
 
 		//query the table for the search //TODO: Optimise and order search
-		$searchResults = DB::table('posts')->where('destination','LIKE',$destination)->paginate();
+		//$searchResults = DB::table('posts')->where('destination','LIKE',$destination)->paginate();
+
+		//just for the sake of debugging, it should return the entire table
+		$searchResults = DB::table('posts')->paginate();
+
 		//	->orwhere('campus','LIKE',$currentLocation)->paginate(10);
 
 		//$searchResults = DB::table('posts')->paginate();
 
 		//send results to the search result view and array of student requests
-		return view('search')->with(compact('searchResults', 'studentsRequests'));
+		return view('searchResults')->with(compact('searchResults', 'studentsRequests'));
 	}
 	
 	//create a journey to advertise
@@ -53,12 +57,20 @@ class postController extends Controller
 		$delim = strpos($request->date, ' ');
 		$date = substr($request->date, 0, $delim);
 		$time = substr($request->date, $delim + 1, strlen($request->date));
+		$farePrice = $request->farePrice;
+		$percentageToPay = $request->percentageToPay;
+
 		//TODO: Check if identical post already exists? Prevent form resubmission?
-		
-		$success = DB::table('posts')->insert(['studentId' => Auth::guard('studentsession')->user()->studentId,
+
+		//this is what's meant to be there once we are done with the login functionality
+//		studentId' => Auth::guard('studentsession')->user()->studentId,
+
+		$success = DB::table('posts')->insert(['studentId' => 1600987,
                                                'destination' => $request->destination,
                                                'date' => $date,
-											   'time' => $time]);
+											   'time' => $time,
+			                                   'farePrice'=> $farePrice,
+			                                   'percentageToPay' => $percentageToPay]);
         return (string)$success;
     }
 	

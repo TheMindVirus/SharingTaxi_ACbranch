@@ -26,8 +26,7 @@ class AppController extends Controller
 	public function home(){return view('home');}
 	
 	//Search results page
-	public function search(){return view('search');}
-	
+
 	//User login page
 	public function login()
 	{
